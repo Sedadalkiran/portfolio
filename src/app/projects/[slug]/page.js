@@ -1,15 +1,21 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import AnimatedSection from "@/components/AnimatedSection";
 
+export async function generateStaticParams() {
+    return projects.map((project) => ({
+        slug: project.slug,
+    }));
+}
+
 export default function ProjectDetailPage({ params }) {
-    const { slug } = use(params);
+    const { slug } = params;
+
     const project = projects.find((p) => p.slug === slug);
 
     if (!project) {
