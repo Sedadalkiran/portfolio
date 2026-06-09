@@ -8,5 +8,6 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }) {
-    return <ProjectDetailClient params={params} />;
+    const resolvedParams = await params;
+    return <ProjectDetailClient params={resolvedParams} />;
 }
